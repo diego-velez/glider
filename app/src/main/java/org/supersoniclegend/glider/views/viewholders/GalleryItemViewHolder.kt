@@ -23,13 +23,13 @@ class GalleryItemViewHolder(view: View) : RecyclerView.ViewHolder(view), View.On
         this.photo = photo
 
         Picasso.get()
-            .load(photo.url_small_thumbnail)
+            .load(photo.urlSmallThumbnail)
             .fit()
             .centerCrop()
             .into(imageView)
     }
 
     override fun onClick(view: View) {
-        Log.i(TAG, photo.toString())
+        Log.i(TAG, "Photo onClick: ${photo.webPageUrl}")
     }
 }

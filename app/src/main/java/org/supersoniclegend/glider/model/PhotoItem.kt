@@ -14,10 +14,10 @@ data class PhotoItem(
     @SerializedName("isfriend") val isFriend: Int,
     @SerializedName("isfamily") val isFamily: Int,
 
-    @SerializedName("url_s") val url_small_thumbnail: String,
-    @SerializedName("height_s") val height_small_thumbnail: Int,
-    @SerializedName("width_s") val width_small_thumbnail: Int
+    @SerializedName("url_s") val urlSmallThumbnail: String,
+    @SerializedName("height_s") val heightSmallThumbnail: Int,
+    @SerializedName("width_s") val widthSmallThumbnail: Int
 ) {
-    val image_url: String
-        get() = "$server/${id}_${secret}_s.jpg"
+    val webPageUrl: String
+        get() = "https://www.flickr.com/photos/$owner/$id"
 }
