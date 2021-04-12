@@ -24,6 +24,8 @@ class GalleryItemViewHolder(view: View) : RecyclerView.ViewHolder(view), View.On
 
         Picasso.get()
             .load(photo.url_small_thumbnail)
+            .fit()
+            .centerCrop()
             .into(imageView)
     }
 
