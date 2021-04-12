@@ -1,3 +1,7 @@
 package org.supersoniclegend.glider.model
 
-data class FlickrResponse(var photos: PhotoResponse)
+data class FlickrResponse(
+    val photos: PhotoResponse,
+    val extra: ExtraResponse,
+    val stat: String
+)
