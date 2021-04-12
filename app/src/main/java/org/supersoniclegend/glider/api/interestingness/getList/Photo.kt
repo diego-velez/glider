@@ -1,8 +1,8 @@
-package org.supersoniclegend.glider.model
+package org.supersoniclegend.glider.api.interestingness.getList
 
 import com.google.gson.annotations.SerializedName
 
-data class PhotoItem(
+data class Photo(
     val id: String,
     val owner: String,
     val secret: String,

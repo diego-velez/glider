@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import org.supersoniclegend.glider.api.FlickrApi
+import org.supersoniclegend.glider.api.interestingness.getList.PhotosResponse
+import org.supersoniclegend.glider.api.interestingness.getList.Photo
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,25 +27,25 @@ class ImageRepository {
         flickrApi = retrofit.create(FlickrApi::class.java)
     }
 
-    fun fetchPhotos(): LiveData<List<PhotoItem>> {
-        val responseLiveData: MutableLiveData<List<PhotoItem>> = MutableLiveData()
+    fun fetchPhotos(): LiveData<List<Photo>> {
+        val responseLiveData: MutableLiveData<List<Photo>> = MutableLiveData()
 
         flickrApi.fetchPhotos().apply {
             enqueue(
-                object : Callback<FlickrResponse> {
+                object : Callback<PhotosResponse> {
                     override fun onResponse(
-                        call: Call<FlickrResponse>,
-                        response: Response<FlickrResponse>
+                        call: Call<PhotosResponse>,
+                        response: Response<PhotosResponse>
                     ) {
                         Log.d(TAG, "Response received")
 
                         val flickrResponse = response.body()
                         val photoResponse = flickrResponse?.photos
 
-                        responseLiveData.value = photoResponse?.photoItems ?: emptyList()
+                        responseLiveData.value = photoResponse?.photos ?: emptyList()
                     }
 
-                    override fun onFailure(call: Call<FlickrResponse>, error: Throwable) {
+                    override fun onFailure(call: Call<PhotosResponse>, error: Throwable) {
                         Log.e(TAG, "onFailure: $call", error)
                     }
                 }

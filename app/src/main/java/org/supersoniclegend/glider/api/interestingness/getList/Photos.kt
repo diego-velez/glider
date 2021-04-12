@@ -1,10 +1,10 @@
-package org.supersoniclegend.glider.model
+package org.supersoniclegend.glider.api.interestingness.getList
 
 import com.google.gson.annotations.SerializedName
 
-data class PhotoResponse(
+data class Photos(
     @SerializedName("photo")
-    val photoItems: List<PhotoItem>,
+    val photos: List<Photo>,
     val total: Int,
     @SerializedName("perpage") val photosPerPage: Int,
     val pages: Int,

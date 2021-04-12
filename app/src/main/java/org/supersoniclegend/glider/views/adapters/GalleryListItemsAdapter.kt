@@ -4,12 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.supersoniclegend.glider.R
-import org.supersoniclegend.glider.model.FlickrResponse
-import org.supersoniclegend.glider.model.PhotoItem
+import org.supersoniclegend.glider.api.interestingness.getList.Photo
 import org.supersoniclegend.glider.views.viewholders.GalleryItemViewHolder
 
 class GalleryListItemsAdapter(
-    var list: List<PhotoItem>
+    var list: List<Photo>
 ) : RecyclerView.Adapter<GalleryItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryItemViewHolder {

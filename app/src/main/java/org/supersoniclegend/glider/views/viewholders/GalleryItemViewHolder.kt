@@ -6,20 +6,20 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import org.supersoniclegend.glider.R
-import org.supersoniclegend.glider.model.PhotoItem
+import org.supersoniclegend.glider.api.interestingness.getList.Photo
 
 private const val TAG = "GalleryItemViewHolder"
 
 class GalleryItemViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
-    private lateinit var photo: PhotoItem
+    private lateinit var photo: Photo
     private var imageView: AppCompatImageView = itemView.findViewById(R.id.photo)
 
     init {
         itemView.setOnClickListener(this)
     }
 
-    fun bind(photo: PhotoItem) {
+    fun bind(photo: Photo) {
         this.photo = photo
 
         Picasso.get()
