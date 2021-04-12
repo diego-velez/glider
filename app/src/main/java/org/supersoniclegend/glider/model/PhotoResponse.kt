@@ -6,7 +6,7 @@ data class PhotoResponse(
     @SerializedName("photo")
     val photoItems: List<PhotoItem>,
     val total: Int,
-    val perpage: Int,
+    @SerializedName("perpage") val perPage: Int,
     val pages: Int,
     val page: Int
 )
