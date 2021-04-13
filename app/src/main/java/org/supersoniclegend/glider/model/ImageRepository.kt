@@ -3,9 +3,11 @@ package org.supersoniclegend.glider.model
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import okhttp3.OkHttpClient
 import org.supersoniclegend.glider.api.FlickrApi
-import org.supersoniclegend.glider.api.interestingness.getList.PhotosResponse
+import org.supersoniclegend.glider.api.FlickrInterceptor
 import org.supersoniclegend.glider.api.interestingness.getList.Photo
+import org.supersoniclegend.glider.api.interestingness.getList.PhotosResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,9 +21,14 @@ class ImageRepository {
     private val flickrApi: FlickrApi
 
     init {
+        val client = OkHttpClient.Builder()
+            .addInterceptor(FlickrInterceptor())
+            .build()
+
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("https://api.flickr.com/")
             .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
             .build()
 
         flickrApi = retrofit.create(FlickrApi::class.java)
