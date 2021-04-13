@@ -8,6 +8,7 @@ import org.supersoniclegend.glider.api.FlickrApi
 import org.supersoniclegend.glider.api.FlickrInterceptor
 import org.supersoniclegend.glider.api.interestingness.getList.Photo
 import org.supersoniclegend.glider.api.interestingness.getList.PhotosResponse
+import org.supersoniclegend.glider.api.photos.getInfo.PhotoResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,16 +45,41 @@ class ImageRepository {
                         call: Call<PhotosResponse>,
                         response: Response<PhotosResponse>
                     ) {
-                        Log.d(TAG, "Response received")
+                        Log.d(TAG, "(fetchPhotos) Response received")
 
-                        val flickrResponse = response.body()
-                        val photoResponse = flickrResponse?.photos
+                        val photosResponse = response.body()
+                        val photos = photosResponse?.photos
 
-                        responseLiveData.value = photoResponse?.photos ?: emptyList()
+                        responseLiveData.value = photos?.photos ?: emptyList()
                     }
 
                     override fun onFailure(call: Call<PhotosResponse>, error: Throwable) {
-                        Log.e(TAG, "onFailure: $call", error)
+                        Log.e(TAG, "(fetchPhotos) onFailure: $call", error)
+                    }
+                }
+            )
+        }
+
+        return responseLiveData
+    }
+
+    fun getPhotoInfo(photoId: String): LiveData<PhotoResponse> {
+        val responseLiveData: MutableLiveData<PhotoResponse> = MutableLiveData()
+
+        flickrApi.getPhotoInfo(photoId).apply {
+            enqueue(
+                object : Callback<PhotoResponse> {
+                    override fun onResponse(
+                        call: Call<PhotoResponse>,
+                        response: Response<PhotoResponse>
+                    ) {
+                        Log.d(TAG, "(getPhotoInfo) Response received")
+
+                        responseLiveData.value = response.body()
+                    }
+
+                    override fun onFailure(call: Call<PhotoResponse>, error: Throwable) {
+                        Log.e(TAG, "(getPhotoInfo) onFailure: $call", error)
                     }
                 }
             )
