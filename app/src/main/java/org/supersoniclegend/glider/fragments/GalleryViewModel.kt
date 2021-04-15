@@ -7,11 +7,7 @@ import org.supersoniclegend.glider.api.photos.getInfo.PhotoResponse
 import org.supersoniclegend.glider.model.ImageRepository
 
 class GalleryViewModel : ViewModel() {
-    private val imageRepository = ImageRepository()
+    private val imageRepository = ImageRepository.get()
 
     val photoItemsLiveData: LiveData<List<Photo>> = imageRepository.fetchPhotos()
-
-    fun getPhotoInfo(photoId: String): LiveData<PhotoResponse> {
-        return imageRepository.getPhotoInfo(photoId)
-    }
 }

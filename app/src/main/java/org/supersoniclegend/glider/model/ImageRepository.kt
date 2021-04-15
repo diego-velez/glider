@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 private const val TAG = "ImageRepository"
 
-class ImageRepository {
+class ImageRepository private constructor() {
 
     private val flickrApi: FlickrApi
 
@@ -86,5 +86,13 @@ class ImageRepository {
         }
 
         return responseLiveData
+    }
+
+    companion object Singleton {
+        private val INSTANCE = ImageRepository()
+
+        fun get(): ImageRepository {
+            return INSTANCE
+        }
     }
 }
