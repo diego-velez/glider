@@ -3,6 +3,7 @@ package org.supersoniclegend.glider.views.viewholders
 import androidx.recyclerview.widget.RecyclerView
 import org.supersoniclegend.glider.api.interestingness.getList.Photo
 import org.supersoniclegend.glider.databinding.GalleryImageItemBinding
+import org.supersoniclegend.glider.model.GalleryItemViewModel
 
 private const val TAG = "GalleryItemViewHolder"
 

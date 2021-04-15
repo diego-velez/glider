@@ -1,4 +1,4 @@
-package org.supersoniclegend.glider.views.viewholders
+package org.supersoniclegend.glider.model
 
 import android.util.Log
 import androidx.appcompat.widget.AppCompatImageView

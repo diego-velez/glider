@@ -6,19 +6,19 @@
 
         <variable
             name="viewModel"
-            type="org.supersoniclegend.glider.views.viewholders.GalleryItemViewModel" />
+            type="org.supersoniclegend.glider.model.GalleryItemViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
+git
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/photo"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:image_url="@{viewModel.imageUrl}"
             android:onClick="@{() -> viewModel.onClick()}"
+            app:image_url="@{viewModel.imageUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
