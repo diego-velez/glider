@@ -5,8 +5,6 @@ import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 
-private const val API_KEY = "1aef0837dd41913568ecf0b8c45a28a6"
-
 class FlickrInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
