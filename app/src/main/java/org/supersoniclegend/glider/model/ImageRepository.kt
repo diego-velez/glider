@@ -88,7 +88,7 @@ class ImageRepository private constructor() {
         return responseLiveData
     }
 
-    companion object Singleton {
+    companion object {
         private val INSTANCE = ImageRepository()
 
         fun get(): ImageRepository {
