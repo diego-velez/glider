@@ -12,7 +12,7 @@ class GalleryItemViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     init {
-        binding.viewModel = GalleryItemViewModel()
+        binding.viewModel = GalleryItemViewModel(itemView.context)
     }
 
     fun bind(photo: Photo) {
