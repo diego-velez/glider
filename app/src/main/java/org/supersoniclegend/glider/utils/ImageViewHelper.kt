@@ -1,19 +1,19 @@
 package org.supersoniclegend.glider.utils
 
+import android.util.Log
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
 
-interface ImageViewHelper {
-    companion object {
-        @JvmStatic
-        @BindingAdapter("image_url")
-        fun loadImage(view: AppCompatImageView, url: String) {
-            Picasso.get()
-                .load(url)
-                .fit()
-                .centerCrop()
-                .into(view)
-        }
-    }
+private const val TAG = "ImageViewHelper"
+
+@BindingAdapter("image_url")
+fun loadImage(view: AppCompatImageView, url: String) {
+    Log.i(TAG, "loadImage: $url")
+
+    Picasso.get()
+        .load(url)
+        .noPlaceholder()
+        .noFade()
+        .into(view)
 }

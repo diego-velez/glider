@@ -7,11 +7,10 @@ import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import org.supersoniclegend.glider.activities.PhotoActivity
 import org.supersoniclegend.glider.api.interestingness.getList.Photo
-import org.supersoniclegend.glider.utils.ImageViewHelper
 
 private const val TAG = "GalleryItemViewModel"
 
-class GalleryItemViewModel(private val context: Context) : BaseObservable(), ImageViewHelper {
+class GalleryItemViewModel(private val context: Context) : BaseObservable() {
 
     var photo: Photo? = null
         set(value) {
