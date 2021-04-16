@@ -19,22 +19,28 @@ private const val PHOTO_URL = "photo_url"
 
 class PhotoActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityPhotoBinding
+
+    private lateinit var photoId: String
+    private lateinit var photoUrl: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding: ActivityPhotoBinding = DataBindingUtil.setContentView(
+        photoId = intent.getStringExtra(PHOTO_ID)
+            ?: throw IllegalStateException("Use start function")
+        photoUrl = intent.getStringExtra(PHOTO_URL)
+            ?: throw IllegalStateException("Use start function")
+
+        binding = DataBindingUtil.setContentView<ActivityPhotoBinding>(
             this,
             R.layout.activity_photo
-        )
-
-        binding.viewModel = PhotoViewModel()
-
-        val photoId = intent.getStringExtra(PHOTO_ID)
-            ?: throw IllegalStateException("Use start function")
-        val photoUrl = intent.getStringExtra(PHOTO_URL)
-            ?: throw IllegalStateException("Use start function")
-
-        binding.viewModel!!.photoUrl = photoUrl
+        ).apply {
+            viewModel = PhotoViewModel().apply {
+                photoUrl = photoUrl
+            }
+            executePendingBindings()
+        }
     }
 
     companion object {
