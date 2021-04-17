@@ -17,7 +17,6 @@ private const val TAG = "GalleryFragment"
 
 class GalleryFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
     private lateinit var binding: FragmentGalleryBinding
 
     private val galleryViewModel: GalleryViewModel by lazy {
@@ -29,15 +28,12 @@ class GalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate<FragmentGalleryBinding>(
+        binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_gallery,
             container,
             false
-        ).apply {
-            recyclerView = galleryRecyclerView
-            recyclerView.layoutManager = GridLayoutManager(context, 3)
-        }
+        )
 
         return binding.root
     }
@@ -46,7 +42,10 @@ class GalleryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         galleryViewModel.photoItemsLiveData.observe(viewLifecycleOwner) { photoItems ->
-            recyclerView.adapter = GalleryListItemsAdapter(photoItems)
+            binding.galleryRecyclerView.apply {
+                layoutManager = GridLayoutManager(context, 3)
+                adapter = GalleryListItemsAdapter(photoItems)
+            }
         }
     }
 
