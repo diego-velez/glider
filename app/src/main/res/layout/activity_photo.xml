@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -20,12 +19,21 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            app:image_url="@{viewModel.photoUrl}" />
+            app:image_url="@{viewModel.photo.urlOriginal ?? viewModel.photo.urlLarge}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/photo_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/photo_image"
+            android:text="@{!viewModel.photo.title.isEmpty ? viewModel.photo.title : @string/no_title_found}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/photo_image" />
+            android:layout_below="@id/photo_title"
+            android:autoLink="web"
+            android:text="@{viewModel.photo.webPageUrl}" />
 
     </RelativeLayout>
 </layout>

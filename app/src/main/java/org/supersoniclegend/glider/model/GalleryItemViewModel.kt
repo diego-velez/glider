@@ -24,6 +24,6 @@ class GalleryItemViewModel(private val context: Context) : BaseObservable() {
 
     fun onClick() {
         Log.i(TAG, "onClick: ${photo!!.webPageUrl}")
-        PhotoActivity.start(context, photo!!.id, photo!!.urlSmallThumbnail)
+        PhotoActivity.start(context, photo!!)
     }
 }

@@ -16,7 +16,15 @@ data class Photo(
 
     @SerializedName("url_s") val urlSmallThumbnail: String,
     @SerializedName("height_s") val heightSmallThumbnail: Int,
-    @SerializedName("width_s") val widthSmallThumbnail: Int
+    @SerializedName("width_s") val widthSmallThumbnail: Int,
+
+    @SerializedName("url_o") val urlOriginal: String,
+    @SerializedName("height_o") val heightOriginal: Int,
+    @SerializedName("width_o") val widthOriginal: Int,
+
+    @SerializedName("url_l") val urlLarge: String,
+    @SerializedName("height_l") val heightLarge: Int,
+    @SerializedName("width_l") val widthLarge: Int,
 ) {
     val webPageUrl: String
         get() = "https://www.flickr.com/photos/$owner/$id"
