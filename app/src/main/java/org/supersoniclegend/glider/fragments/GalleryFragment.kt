@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import org.supersoniclegend.glider.R
 import org.supersoniclegend.glider.databinding.FragmentGalleryBinding
 import org.supersoniclegend.glider.views.adapters.GalleryListItemsAdapter
 
@@ -28,12 +25,7 @@ class GalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_gallery,
-            container,
-            false
-        )
+        binding = FragmentGalleryBinding.inflate(inflater, container, false)
 
         return binding.root
     }
