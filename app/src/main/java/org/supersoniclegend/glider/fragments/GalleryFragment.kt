@@ -34,17 +34,19 @@ class GalleryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        galleryViewModel.photoItemsLiveData.observe(viewLifecycleOwner) { photoItems ->
-            Log.d(TAG, "onViewCreated: Received ${photoItems.size} photos")
-
-            binding.galleryRecyclerView.apply {
+        binding.apply {
+            galleryRecyclerView.apply {
+                adapter = GalleryListItemsAdapter()
                 layoutManager = GridLayoutManager(context, 3)
-                adapter = GalleryListItemsAdapter(photoItems)
             }
-        }
 
-        binding.swipeToRefreshLayout.setOnRefreshListener {
-            refreshPhotoItems()
+            galleryViewModel.photoItemsLiveData.observe(viewLifecycleOwner) {
+                (galleryRecyclerView.adapter as GalleryListItemsAdapter).submitList(it)
+            }
+
+            swipeToRefreshLayout.setOnRefreshListener {
+                refreshPhotoItems()
+            }
         }
     }
 
