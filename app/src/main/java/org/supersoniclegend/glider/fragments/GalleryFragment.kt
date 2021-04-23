@@ -1,6 +1,7 @@
 package org.supersoniclegend.glider.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,11 +35,24 @@ class GalleryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         galleryViewModel.photoItemsLiveData.observe(viewLifecycleOwner) { photoItems ->
+            Log.d(TAG, "onViewCreated: Received ${photoItems.size} photos")
+
             binding.galleryRecyclerView.apply {
                 layoutManager = GridLayoutManager(context, 3)
                 adapter = GalleryListItemsAdapter(photoItems)
             }
         }
+
+        binding.swipeToRefreshLayout.setOnRefreshListener {
+            refreshPhotoItems()
+        }
+    }
+
+    private fun refreshPhotoItems() {
+        Log.d(TAG, "refreshPhotoItems")
+
+        galleryViewModel.refreshPhotoItems()
+        binding.swipeToRefreshLayout.isRefreshing = false
     }
 
     companion object {
