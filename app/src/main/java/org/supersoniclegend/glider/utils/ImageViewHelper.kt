@@ -3,6 +3,7 @@ package org.supersoniclegend.glider.utils
 import android.util.Log
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
+import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 
 private const val TAG = "ImageViewHelper"
@@ -15,5 +16,6 @@ fun loadImage(view: AppCompatImageView, url: String) {
         .load(url)
         .noPlaceholder()
         .noFade()
+        .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
         .into(view)
 }
