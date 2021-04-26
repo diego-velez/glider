@@ -1,10 +1,12 @@
 package org.supersoniclegend.glider.model
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import okhttp3.OkHttpClient
 import org.supersoniclegend.glider.api.FlickrApi
+import org.supersoniclegend.glider.api.FlickrApi.Companion.BASE_URL
 import org.supersoniclegend.glider.api.FlickrInterceptor
 import org.supersoniclegend.glider.api.interestingness.getList.Photo
 import org.supersoniclegend.glider.api.interestingness.getList.PhotosResponse
@@ -17,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 private const val TAG = "ImageRepository"
 
-class ImageRepository private constructor() {
+class ImageRepository private constructor(val application: Application) {
 
     private val flickrApi: FlickrApi
 
@@ -27,7 +29,7 @@ class ImageRepository private constructor() {
             .build()
 
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://api.flickr.com/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -89,10 +91,16 @@ class ImageRepository private constructor() {
     }
 
     companion object {
-        private val INSTANCE = ImageRepository()
+        private var INSTANCE: ImageRepository? = null
 
         fun get(): ImageRepository {
-            return INSTANCE
+            return INSTANCE ?: throw IllegalStateException("Must be initialized")
+        }
+
+        fun initialize(application: Application) {
+            if (INSTANCE == null) {
+                INSTANCE = ImageRepository(application)
+            }
         }
     }
 }
