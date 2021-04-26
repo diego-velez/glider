@@ -8,8 +8,6 @@ import okhttp3.OkHttpClient
 import org.supersoniclegend.glider.api.FlickrApi
 import org.supersoniclegend.glider.api.FlickrApi.Companion.BASE_URL
 import org.supersoniclegend.glider.api.FlickrInterceptor
-import org.supersoniclegend.glider.api.interestingness.getList.Photo
-import org.supersoniclegend.glider.api.interestingness.getList.PhotosResponse
 import org.supersoniclegend.glider.api.photos.getInfo.PhotoResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,33 +35,7 @@ class ImageRepository private constructor(val application: Application) {
         flickrApi = retrofit.create(FlickrApi::class.java)
     }
 
-    fun fetchPhotos(): LiveData<List<Photo>> {
-        val responseLiveData: MutableLiveData<List<Photo>> = MutableLiveData()
-
-        flickrApi.fetchPhotos().apply {
-            enqueue(
-                object : Callback<PhotosResponse> {
-                    override fun onResponse(
-                        call: Call<PhotosResponse>,
-                        response: Response<PhotosResponse>
-                    ) {
-                        Log.d(TAG, "(fetchPhotos) Response received")
-
-                        val photosResponse = response.body()
-                        val photos = photosResponse?.photos
-
-                        responseLiveData.value = photos?.photos ?: emptyList()
-                    }
-
-                    override fun onFailure(call: Call<PhotosResponse>, error: Throwable) {
-                        Log.e(TAG, "(fetchPhotos) onFailure: $call", error)
-                    }
-                }
-            )
-        }
-
-        return responseLiveData
-    }
+    suspend fun fetchPhotos() = flickrApi.fetchPhotos()
 
     fun getPhotoInfo(photoId: String): LiveData<PhotoResponse> {
         val responseLiveData: MutableLiveData<PhotoResponse> = MutableLiveData()

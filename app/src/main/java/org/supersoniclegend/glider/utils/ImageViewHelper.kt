@@ -16,6 +16,5 @@ fun loadImage(view: AppCompatImageView, url: String) {
         .load(url)
         .noPlaceholder()
         .noFade()
-        .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
         .into(view)
 }

@@ -1,17 +1,21 @@
 package org.supersoniclegend.glider.fragments
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import org.supersoniclegend.glider.api.interestingness.getList.Photo
+import androidx.lifecycle.liveData
+import kotlinx.coroutines.Dispatchers
 import org.supersoniclegend.glider.model.ImageRepository
+import org.supersoniclegend.glider.utils.Resource
 
 class GalleryViewModel : ViewModel() {
     private val imageRepository = ImageRepository.get()
 
-    var photoItemsLiveData: LiveData<List<Photo>> = imageRepository.fetchPhotos()
-        private set
+    fun photoItemsLiveData() = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
 
-    fun refreshPhotoItems() {
-        photoItemsLiveData = imageRepository.fetchPhotos()
+        try {
+            emit(Resource.Success(data = imageRepository.fetchPhotos()))
+        } catch (error: Exception) {
+            emit(Resource.Error(error = error, data = null))
+        }
     }
 }
