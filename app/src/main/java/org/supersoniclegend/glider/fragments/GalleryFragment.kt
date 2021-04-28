@@ -1,5 +1,6 @@
 package org.supersoniclegend.glider.fragments
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,7 +39,13 @@ class GalleryFragment : Fragment() {
         binding.apply {
             galleryRecyclerView.apply {
                 adapter = GalleryListItemsAdapter()
-                layoutManager = GridLayoutManager(context, 3)
+                
+                layoutManager =
+                    if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                        GridLayoutManager(context, 5)
+                    } else {
+                        GridLayoutManager(context, 3)
+                    }
             }
 
             setupLiveData()
