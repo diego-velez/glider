@@ -64,7 +64,7 @@ class GalleryItemViewHolder(
         }
 
         override fun onLongPress(event: MotionEvent) {
-            Log.i(TAG, "onLongPress: $event")
+            Log.d(TAG, "onLongPress: $event")
             currentAction = "onLongPress"
             photoZoomDialog.show(
                 (itemView.context as AppCompatActivity).supportFragmentManager,
@@ -73,11 +73,11 @@ class GalleryItemViewHolder(
         }
 
         override fun onShowPress(event: MotionEvent) {
-            Log.i(TAG, "onShowPress: $event")
+            Log.d(TAG, "onShowPress: $event")
         }
 
         override fun onSingleTapUp(event: MotionEvent): Boolean {
-            Log.i(TAG, "onSingleTapUp: $event")
+            Log.d(TAG, "onSingleTapUp: $event")
             binding.viewModel!!.onClick()
             return true
         }
@@ -88,7 +88,7 @@ class GalleryItemViewHolder(
             distanceX: Float,
             distanceY: Float
         ): Boolean {
-            Log.i(TAG, "onScroll: $event1, $event2")
+            Log.d(TAG, "onScroll: $event1, $event2")
             return true
         }
 
@@ -98,27 +98,27 @@ class GalleryItemViewHolder(
             velocityX: Float,
             velocityY: Float
         ): Boolean {
-            Log.i(TAG, "onFling: $event1, $event2")
+            Log.d(TAG, "onFling: $event1, $event2")
             return true
         }
 
         override fun onSingleTapConfirmed(event: MotionEvent): Boolean {
-            Log.i(TAG, "onSingleTapConfirmed: $event")
+            Log.d(TAG, "onSingleTapConfirmed: $event")
             return true
         }
 
         override fun onDoubleTap(event: MotionEvent): Boolean {
-            Log.i(TAG, "onDoubleTap: $event")
+            Log.d(TAG, "onDoubleTap: $event")
             return true
         }
 
         override fun onDoubleTapEvent(event: MotionEvent): Boolean {
-            Log.i(TAG, "onDoubleTapEvent: $event")
+            Log.d(TAG, "onDoubleTapEvent: $event")
             return true
         }
 
         override fun onContextClick(event: MotionEvent): Boolean {
-            Log.i(TAG, "onContextClick: $event")
+            Log.d(TAG, "onContextClick: $event")
             return true
         }
     }
