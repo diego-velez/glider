@@ -15,7 +15,7 @@ class FlickrInterceptor : Interceptor {
             .addQueryParameter("api_key", API_KEY)
             .addQueryParameter("format", "json")
             .addQueryParameter("nojsoncallback", "1")
-            .addQueryParameter("extras", "url_s, url_o, url_l")
+            .addQueryParameter("extras", "url_s, url_o, url_l, owner_name")
             .build()
 
         val newRequest: Request = originalRequest.newBuilder()

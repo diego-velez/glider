@@ -25,6 +25,8 @@ data class Photo(
     @SerializedName("url_l") val urlLarge: String,
     @SerializedName("height_l") val heightLarge: Int,
     @SerializedName("width_l") val widthLarge: Int,
+
+    @SerializedName("ownername") val ownerUsername: String,
 ) {
     val webPageUrl: String
         get() = "https://www.flickr.com/photos/$owner/$id"

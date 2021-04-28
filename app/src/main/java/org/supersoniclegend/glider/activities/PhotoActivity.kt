@@ -3,6 +3,7 @@ package org.supersoniclegend.glider.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import org.supersoniclegend.glider.R
@@ -30,6 +31,8 @@ class PhotoActivity : AppCompatActivity() {
 
     companion object {
         fun start(context: Context, photo: Photo) {
+            Log.i(TAG, "start: $photo")
+            
             DataHolder.currentPhoto = photo
             context.let {
                 it.startActivity(Intent(it, PhotoActivity::class.java))

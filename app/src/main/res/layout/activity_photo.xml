@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -19,21 +20,32 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            app:image_url="@{viewModel.photo.urlOriginal ?? viewModel.photo.urlLarge}" />
+            app:image_url="@{viewModel.photo.urlOriginal ?? viewModel.photo.urlLarge}"
+            tools:src="@mipmap/ic_launcher" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/photo_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/photo_image"
-            android:text="@{!viewModel.photo.title.isEmpty ? viewModel.photo.title : @string/no_title_found}" />
+            android:text="@{!viewModel.photo.title.isEmpty ? viewModel.photo.title : @string/no_title_found}"
+            tools:text="Photo Title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/photo_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/photo_title"
+            android:text="@{@string/posted_by(viewModel.photo.ownerUsername)}"
+            tools:text="By Obebe Okeke" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/photo_title"
+            android:layout_below="@id/photo_author"
             android:autoLink="web"
-            android:text="@{viewModel.photo.webPageUrl}" />
+            android:text="@{viewModel.photo.webPageUrl}"
+            tools:text="https://www.flickr.com/photos/141371676@N06/51140875107" />
 
     </RelativeLayout>
 </layout>
