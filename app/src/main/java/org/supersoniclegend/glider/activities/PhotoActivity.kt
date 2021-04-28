@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import org.supersoniclegend.glider.R
 import org.supersoniclegend.glider.api.interestingness.getList.Photo
 import org.supersoniclegend.glider.databinding.ActivityPhotoBinding
+import org.supersoniclegend.glider.model.DataHolder
 import org.supersoniclegend.glider.model.PhotoViewModel
 
 private const val TAG = "PhotoActivity"

@@ -1,4 +1,4 @@
-package org.supersoniclegend.glider.activities
+package org.supersoniclegend.glider.model
 
 import org.supersoniclegend.glider.api.interestingness.getList.Photo
 

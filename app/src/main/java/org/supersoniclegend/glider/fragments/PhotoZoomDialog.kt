@@ -4,7 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
-import org.supersoniclegend.glider.activities.DataHolder
+import org.supersoniclegend.glider.model.DataHolder
 import org.supersoniclegend.glider.api.interestingness.getList.Photo
 import org.supersoniclegend.glider.databinding.DialogPhotoZoomBinding
 
