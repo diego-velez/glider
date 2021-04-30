@@ -41,22 +41,30 @@ class PhotoActivity : AppCompatActivity() {
             DataHolder.currentPhoto.urlOriginal
         }
 
-        Picasso.get()
-            .load(imageUrl)
-            .into(
-                binding.photoImage,
+        binding.apply {
+            Picasso.get()
+                .load(imageUrl)
+                .into(
+                    photoImage,
 
-                object : Callback {
-                    override fun onSuccess() {
-                        binding.linearLayout.visibility = View.VISIBLE
-                        binding.progressBar.visibility = View.INVISIBLE
-                    }
+                    object : Callback {
+                        override fun onSuccess() {
+                            linearLayout.visibility = View.VISIBLE
+                            progressBar.visibility = View.INVISIBLE
+                        }
 
-                    override fun onError(error: Exception) {
-                        Log.e(TAG, "onError: Image failed to load", error)
+                        override fun onError(error: Exception) {
+                            Log.e(TAG, "onError: Image failed to load", error)
+
+                            progressBar.visibility = View.INVISIBLE
+                            errorTextView.apply {
+                                visibility = View.VISIBLE
+                                text = getString(R.string.error, error.localizedMessage)
+                            }
+                        }
                     }
-                }
-            )
+                )
+        }
     }
 
     companion object {

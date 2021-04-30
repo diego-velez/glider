@@ -4,4 +4,5 @@
     <!-- activity_photo.xml -->
     <string name="no_title_found">No title found</string>
     <string name="posted_by">Posted by %1$s</string>
+    <string name="error">Error: %1$s</string>
 </resources>

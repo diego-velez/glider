@@ -27,12 +27,11 @@
             tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/error_text"
+            android:id="@+id/error_text_view"
+            style="@style/ErrorTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_margin="8dp"
-            android:gravity="center_horizontal"
             android:visibility="invisible"
             tools:text="Error Message"
             tools:visibility="visible" />

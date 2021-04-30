@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import org.supersoniclegend.glider.R
 import org.supersoniclegend.glider.databinding.FragmentGalleryBinding
 import org.supersoniclegend.glider.utils.Resource
 import org.supersoniclegend.glider.views.adapters.GalleryListItemsAdapter
@@ -39,7 +40,7 @@ class GalleryFragment : Fragment() {
         binding.apply {
             galleryRecyclerView.apply {
                 adapter = GalleryListItemsAdapter()
-                
+
                 layoutManager =
                     if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                         GridLayoutManager(context, 5)
@@ -72,20 +73,20 @@ class GalleryFragment : Fragment() {
 
                         progressBar.visibility = View.INVISIBLE
                         galleryRecyclerView.visibility = View.INVISIBLE
-                        errorText.apply {
+                        errorTextView.apply {
                             visibility = View.VISIBLE
-                            text = status.error?.message
+                            text = getString(R.string.error, status.error?.localizedMessage)
                         }
                     }
                     is Resource.Loading -> {
                         progressBar.visibility = View.VISIBLE
                         galleryRecyclerView.visibility = View.INVISIBLE
-                        errorText.visibility = View.INVISIBLE
+                        errorTextView.visibility = View.INVISIBLE
                     }
                     is Resource.Success -> {
                         progressBar.visibility = View.INVISIBLE
                         galleryRecyclerView.visibility = View.VISIBLE
-                        errorText.visibility = View.INVISIBLE
+                        errorTextView.visibility = View.INVISIBLE
 
                         (galleryRecyclerView.adapter as GalleryListItemsAdapter)
                             .submitList(status.data?.photos?.photos)

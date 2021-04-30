@@ -59,5 +59,15 @@
             android:layout_centerInParent="true"
             android:visibility="visible" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/error_text_view"
+            style="@style/ErrorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            tools:text="Error text"
+            tools:visibility="visible" />
+
     </RelativeLayout>
 </layout>
