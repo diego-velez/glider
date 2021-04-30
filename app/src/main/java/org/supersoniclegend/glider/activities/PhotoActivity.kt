@@ -4,8 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 import org.supersoniclegend.glider.R
 import org.supersoniclegend.glider.api.interestingness.getList.Photo
 import org.supersoniclegend.glider.databinding.ActivityPhotoBinding
@@ -27,12 +30,39 @@ class PhotoActivity : AppCompatActivity() {
             viewModel = PhotoViewModel()
             executePendingBindings()
         }
+
+        loadImage()
+    }
+
+    private fun loadImage() {
+        val imageUrl = if (DataHolder.currentPhoto.urlOriginal.isNullOrBlank()) {
+            DataHolder.currentPhoto.urlLarge
+        } else {
+            DataHolder.currentPhoto.urlOriginal
+        }
+
+        Picasso.get()
+            .load(imageUrl)
+            .into(
+                binding.photoImage,
+
+                object : Callback {
+                    override fun onSuccess() {
+                        binding.linearLayout.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.INVISIBLE
+                    }
+
+                    override fun onError(error: Exception) {
+                        Log.e(TAG, "onError: Image failed to load", error)
+                    }
+                }
+            )
     }
 
     companion object {
         fun start(context: Context, photo: Photo) {
             Log.i(TAG, "start: $photo")
-            
+
             DataHolder.currentPhoto = photo
             context.let {
                 it.startActivity(Intent(it, PhotoActivity::class.java))

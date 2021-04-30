@@ -18,7 +18,7 @@ data class Photo(
     @SerializedName("height_s") val heightSmallThumbnail: Int,
     @SerializedName("width_s") val widthSmallThumbnail: Int,
 
-    @SerializedName("url_o") val urlOriginal: String,
+    @SerializedName("url_o") val urlOriginal: String?,
     @SerializedName("height_o") val heightOriginal: Int,
     @SerializedName("width_o") val widthOriginal: Int,
 
