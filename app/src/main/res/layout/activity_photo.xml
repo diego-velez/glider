@@ -9,65 +9,71 @@
             type="org.supersoniclegend.glider.model.PhotoViewModel" />
     </data>
 
-    <RelativeLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <LinearLayout
-            android:id="@+id/linear_layout"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="invisible"
-            tools:visibility="visible">
+            android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/photo_image"
+            <LinearLayout
+                android:id="@+id/linear_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                tools:src="@mipmap/ic_launcher" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                tools:visibility="visible">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/photo_title"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/photo_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    tools:src="@mipmap/ic_launcher" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/photo_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{!viewModel.photo.title.isEmpty ? viewModel.photo.title : @string/no_title_found}"
+                    tools:text="Photo Title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/photo_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/posted_by(viewModel.photo.ownerUsername)}"
+                    tools:text="By Obebe Okeke" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="web"
+                    android:text="@{viewModel.photo.webPageUrl}"
+                    tools:text="https://www.flickr.com/photos/141371676@N06/51140875107" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{!viewModel.photo.title.isEmpty ? viewModel.photo.title : @string/no_title_found}"
-                tools:text="Photo Title" />
+                android:layout_centerInParent="true"
+                android:visibility="visible" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/photo_author"
+                android:id="@+id/error_text_view"
+                style="@style/ErrorTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{@string/posted_by(viewModel.photo.ownerUsername)}"
-                tools:text="By Obebe Okeke" />
+                android:layout_centerInParent="true"
+                android:visibility="invisible"
+                tools:text="Error text"
+                tools:visibility="visible" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:autoLink="web"
-                android:text="@{viewModel.photo.webPageUrl}"
-                tools:text="https://www.flickr.com/photos/141371676@N06/51140875107" />
-
-        </LinearLayout>
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="visible" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/error_text_view"
-            style="@style/ErrorTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="invisible"
-            tools:text="Error text"
-            tools:visibility="visible" />
-
-    </RelativeLayout>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>
