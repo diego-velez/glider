@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="org.supersoniclegend.glider.model.PhotoViewModel" />
+            type="com.digital.construction.glider.model.PhotoViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView

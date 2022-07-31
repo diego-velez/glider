@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="org.supersoniclegend.glider.model.GalleryItemViewModel" />
+            type="com.digital.construction.glider.model.GalleryItemViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

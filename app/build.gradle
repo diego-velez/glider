@@ -9,7 +9,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "org.supersoniclegend.glider"
+        applicationId "com.digital.construction.glider"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
